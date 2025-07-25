@@ -3,13 +3,41 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  
+  /* Palette Delta Orthopédie - Couleurs du logo */
+  --jelly-bean: #2277a3;
+  --sushi: #86bc4d;
+  --black-haze: #edeeee;
+  --summer-green: #97baa2;
+  --fern-frond: #588329;
+  --oslo-gray: #838586;
+  --loblolly: #b6c8cd;
+  --bombay: #b0b7ba;
+  --pine-glade: #b5d092;
+  --beryl-green: #d4e7bd;
+  
+  /* Couleurs sémantiques basées sur le logo */
+  --color-primary: var(--jelly-bean);        /* Bleu principal */
+  --color-secondary: var(--sushi);           /* Vert principal */
+  --color-accent: var(--fern-frond);         /* Vert foncé pour accents */
+  --color-background: var(--black-haze);     /* Fond clair */
+  --color-surface: var(--beryl-green);       /* Surfaces douces */
+  --color-muted: var(--oslo-gray);           /* Texte secondaire */
+  
+  /* Couleurs personnalisées Delta Orthopédie pour Tailwind */
+  --color-jelly-bean: #2277a3;
+  --color-sushi: #86bc4d;
+  --color-black-haze: #edeeee;
+  --color-summer-green: #97baa2;
+  --color-fern-frond: #588329;
+  --color-oslo-gray: #838586;
+  --color-loblolly: #b6c8cd;
+  --color-bombay: #b0b7ba;
+  --color-pine-glade: #b5d092;
+  --color-beryl-green: #d4e7bd;
+  
+  /* Variables pour compatibilité */
+  --font-sans: var(--font-inter);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,8 +47,193 @@
   }
 }
 
+/* Smooth scroll pour toute la page */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
 }
+
+/* ===== STRATÉGIE ANIMATION UX CIBLÉE ===== */
+
+/* 🎯 ACCESSIBILITY FIRST - Support du reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 🚀 ANIMATIONS CTA STRATÉGIQUES - Pour attirer l'attention */
+@keyframes ctaPulse {
+  0%, 100% { 
+    transform: scale(1); 
+    box-shadow: 0 0 0 0 rgba(134, 188, 77, 0.4);
+  }
+  50% { 
+    transform: scale(1.02); 
+    box-shadow: 0 0 0 10px rgba(134, 188, 77, 0);
+  }
+}
+
+@keyframes ctaShine {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Boutons CTA principaux avec effet d'attention */
+.cta-primary {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-secondary), var(--color-accent), var(--color-secondary));
+  background-size: 200% 100%;
+  transition: all 0.3s ease;
+  will-change: transform, box-shadow;
+}
+
+.cta-primary:hover {
+  animation: ctaPulse 2s infinite;
+  background-position: 100% center;
+}
+
+.cta-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.cta-primary:hover::before {
+  left: 100%;
+}
+
+/* 📈 FEEDBACK D'INTERACTION - Confirmer les actions */
+@keyframes successRipple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.interaction-feedback {
+  position: relative;
+  overflow: hidden;
+}
+
+.interaction-feedback::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(134, 188, 77, 0.6);
+  border-radius: 50%;
+  transform: scale(0) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.interaction-feedback:active::after {
+  animation: successRipple 0.6s ease-out;
+}
+
+/* 🎯 MICRO-INTERACTIONS GUIDÉES - Pour le parcours utilisateur */
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes slideIntoView {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Guide visuel subtle pour les éléments importants */
+.guide-attention {
+  animation: floatGentle 3s ease-in-out infinite;
+}
+
+/* Révélation douce au scroll */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 💫 TRANSITIONS ÉLÉGANTES - Performance optimisée */
+.smooth-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.smooth-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* 🎨 ÉLÉMENTS INTERACTIVE SUBTILS */
+@keyframes cardGlow {
+  0%, 100% { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); }
+  50% { box-shadow: 0 8px 25px rgba(134, 188, 77, 0.15); }
+}
+
+.card-interactive {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.card-interactive:hover {
+  animation: cardGlow 2s ease-in-out infinite;
+  transform: translateY(-5px);
+}
+
+/* 🔧 LOADING & ÉTATS */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+/* 📱 RESPONSIVE ANIMATIONS */
+@media (max-width: 768px) {
+  .cta-primary:hover {
+    animation: none; /* Pas d'animation hover sur mobile */
+  }
+  
+  .smooth-hover:hover {
+    transform: none; /* Pas de transform hover sur mobile */
+  }
+}
+
+/* 🎯 UTILITIES CLASSES - Pour usage facile */
+.animate-delay-100 { animation-delay: 0.1s; }
+.animate-delay-200 { animation-delay: 0.2s; }
+.animate-delay-300 { animation-delay: 0.3s; }
+.animate-delay-500 { animation-delay: 0.5s; }

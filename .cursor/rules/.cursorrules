@@ -1,0 +1,16 @@
+# Règles de Qualité de Code
+- Utilise toujours TypeScript avec un typage strict.
+- Crée des composants React fonctionnels via des arrow functions (const MyComponent = () => ...). Pas de class components.
+- L'interface des props doit être nommée 'Props' et définie juste au-dessus du composant.
+- Écris du code sémantique et accessible. Utilise les balises HTML appropriées (nav, main, section, article...) et ajoute les attributs ARIA de base lorsque c'est pertinent (ex: aria-label pour les boutons avec icône).
+
+# Règles de Style (Tailwind CSS)
+- Utilise exclusivement les classes utilitaires de Tailwind CSS. Jamais de CSS personnalisé ou de style en ligne.
+- Pour les classes conditionnelles, utilise la librairie 'clsx' et la fonction 'twMerge'. Si elles ne sont pas installées, propose la commande npm pour le faire.
+- Le design doit être mobile-first, en utilisant les modificateurs de Tailwind (sm:, md:, lg:).
+
+# Règles de Structure de Fichiers
+- Les composants UI réutilisables vont dans `src/components/ui/`.
+- Les sections de page vont dans `src/components/sections/`.
+- Les composants de layout (Header, Footer) vont dans `src/components/layout/`.
+- Le nom de fichier doit être en PascalCase (ex: HeroSection.tsx).
