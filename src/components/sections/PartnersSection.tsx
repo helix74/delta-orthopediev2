@@ -1,35 +1,48 @@
+import Image from "next/image";
+
 /**
  * PartnersSection - Section de preuve sociale
  * Objectif : Établir instantanément la crédibilité et le sérieux
  * de Delta Orthopédie à travers ses partenaires et certifications
  */
 export default function PartnersSection() {
-  // Données des partenaires/certifications avec placeholders
+  // Données des partenaires/certifications avec vraies images
   const partners = [
     {
       name: "Ottobock",
       description: "Leader mondial en orthopédie",
-      placeholder: "OTTOBOCK"
+      logoPath: "/images/logos/ottobock.png",
+      alt: "Logo Ottobock - Leader mondial en orthopédie"
+    },
+    {
+      name: "OSSUR",
+      description: "Innovation orthopédique mondiale",
+      logoPath: "/images/logos/ossur.png",
+      alt: "Logo OSSUR - Innovation orthopédique mondiale"
     },
     {
       name: "ISPO",
       description: "Certification internationale",
-      placeholder: "ISPO"
+      logoPath: "/images/logos/ispo.png",
+      alt: "Logo ISPO - Certification internationale en orthopédie"
     },
     {
       name: "Delta Med Plus",
       description: "Notre filiale spécialisée",
-      placeholder: "DELTA MED+"
+      logoPath: "/images/logos/delta-med-plus.svg",
+      alt: "Logo Delta Med Plus - Filiale spécialisée"
     },
     {
       name: "Ministère Santé",
       description: "Agréé par les autorités",
-      placeholder: "MINISTÈRE"
+      logoPath: "/images/logos/ministere-sante.png",
+      alt: "Logo Ministère de la Santé - Agrément officiel"
     },
     {
       name: "CNAM",
       description: "Conventionné sécurité sociale",
-      placeholder: "CNAM"
+      logoPath: "/images/logos/cnam.png",
+      alt: "Logo CNAM - Caisse Nationale d'Assurance Maladie"
     }
   ];
 
@@ -43,23 +56,29 @@ export default function PartnersSection() {
             Un savoir-faire reconnu et certifié
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Nous collaborons avec les leaders internationaux de l&apos;orthopédie 
-            et respectons les plus hautes certifications du secteur.
+            Nous collaborons avec les leaders internationaux de l&apos;orthopédie, 
+            les organisations mondiales spécialisées en éducation, formation et recherche 
+            dans le domaine de l&apos;appareillage orthopédique, ainsi qu&apos;avec 
+            l&apos;ensemble des acteurs du secteur.
           </p>
         </div>
 
         {/* Grille des logos partenaires */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center justify-items-center">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center">
           {partners.map((partner, index) => (
             <div 
               key={index}
               className="group flex flex-col items-center justify-center p-6 rounded-lg hover:bg-white transition-all duration-300 hover:shadow-sm"
             >
-              {/* Placeholder pour logo */}
-              <div className="w-24 h-16 bg-gray-200 rounded-lg flex items-center justify-center mb-3 group-hover:bg-gray-100 transition-colors">
-                <span className="text-xs font-semibold text-gray-500 text-center leading-tight">
-                  {partner.placeholder}
-                </span>
+              {/* Logo réel */}
+              <div className="w-24 h-16 relative mb-3 group-hover:scale-105 transition-transform duration-300">
+                <Image
+                  src={partner.logoPath}
+                  alt={partner.alt}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100px, 96px"
+                />
               </div>
               
               {/* Nom du partenaire */}

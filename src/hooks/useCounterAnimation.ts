@@ -28,7 +28,7 @@ export const useCounterAnimation = (options: CounterOptions) => {
 
   const [count, setCount] = useState(start);
   const [hasStarted, setHasStarted] = useState(false);
-  const elementRef = useRef<HTMLElement>(null);
+  const elementRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const element = elementRef.current;

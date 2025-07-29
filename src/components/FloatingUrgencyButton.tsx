@@ -23,7 +23,7 @@ export default function FloatingUrgencyButton() {
       icon: faAmbulance,
       label: "Urgence médicale",
       description: "Problème technique urgent",
-      action: "tel:+21671964964",
+      action: "tel:+21694800353",
       color: "bg-red-500 hover:bg-red-600",
       textColor: "text-red-600"
     },
@@ -31,7 +31,7 @@ export default function FloatingUrgencyButton() {
       icon: faPhone,
       label: "Appel direct",
       description: "Parler à un expert",
-      action: "tel:+21671964964",
+      action: "tel:+21694800353",
       color: "bg-[color:var(--color-primary)] hover:bg-[color:var(--color-primary)]/90", 
       textColor: "text-[color:var(--color-primary)]"
     },
@@ -39,7 +39,7 @@ export default function FloatingUrgencyButton() {
       icon: faWhatsapp,
       label: "WhatsApp",
       description: "Message instantané",
-      action: "https://wa.me/21698364964",
+      action: "https://wa.me/21699224446",
       color: "bg-green-500 hover:bg-green-600",
       textColor: "text-green-600"
     },

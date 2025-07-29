@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
   faArrowRight, 
@@ -28,70 +27,9 @@ import { useCounterAnimation } from "@/hooks/useCounterAnimation";
  * + Galerie d'images des solutions
  */
 export default function OfferSection() {
-  const yearsCounter = useCounterAnimation({ end: 12, suffix: '+', duration: 1500 });
-  const patientsCounter = useCounterAnimation({ end: 500, suffix: '+', duration: 2000 });
-  const satisfactionCounter = useCounterAnimation({ end: 98, suffix: '%', duration: 1800 });
-
-  // Données des images avec vraies sources
-  const prothesesImages = [
-    { 
-      name: "Membres inférieurs", 
-      src: "/images/protheses/membres-inferieurs.jpg",
-      alt: "Prothèses pour membres inférieurs - jambes et pieds sur-mesure",
-      icon: faPersonWalkingWithCane
-    },
-    { 
-      name: "Membres supérieurs", 
-      src: "/images/protheses/membres-superieurs.jpg",
-      alt: "Prothèses pour membres supérieurs - bras et mains myoélectriques",
-      icon: faHandHoldingMedical
-    },
-    { 
-      name: "Esthétiques silicone", 
-      src: "/images/protheses/esthetiques-silicone.jpg",
-      alt: "Prothèses esthétiques en silicone réalistes",
-      icon: faStar
-    },
-    { 
-      name: "Pédiatriques", 
-      src: "/images/protheses/pediatriques.jpg",
-      alt: "Prothèses spécialisées pour enfants et adolescents",
-      icon: faBaby
-    }
-  ];
-
-  const orthesesImages = [
-    { 
-      name: "Semelles orthopédiques", 
-      src: "/images/ortheses/semelles-orthopediques.jpg",
-      alt: "Semelles orthopédiques sur-mesure pour correction posturale",
-      icon: faShoePrints
-    },
-    { 
-      name: "Semelles 3D", 
-      src: "/images/ortheses/semelles-3d.jpg",
-      alt: "Semelles imprimées en 3D pour précision maximale",
-      icon: faPrint
-    },
-    { 
-      name: "Orthèses LECKKO", 
-      src: "/images/ortheses/ortheses-leckko.jpg",
-      alt: "Système d'orthèses LECKKO innovant",
-      icon: faBone
-    },
-    { 
-      name: "Attelles", 
-      src: "/images/ortheses/attelles.jpg",
-      alt: "Attelles de soutien et correction sur-mesure",
-      icon: faBandAid
-    },
-    { 
-      name: "Appareillage pédiatrique", 
-      src: "/images/ortheses/appareillage-pediatrique.jpg",
-      alt: "Appareillages orthopédiques spécialisés pour enfants",
-      icon: faBaby
-    }
-  ];
+  const yearsCounter = useCounterAnimation({ end: 13, suffix: '', duration: 1500 });
+  const patientsCounter = useCounterAnimation({ end: 200, suffix: '+', duration: 2000 });
+  const satisfactionCounter = useCounterAnimation({ end: 90, suffix: '%', duration: 1800 });
 
   // Nos spécialités avec icônes FontAwesome
   const specialties = [
@@ -276,154 +214,35 @@ export default function OfferSection() {
           </div>
         </div>
 
-        {/* GALERIE d'images des solutions avec animation premium */}
-        <div className="bg-[color:var(--color-black-haze)] rounded-2xl p-8 md:p-12 shadow-lg">
-          <div className="text-center mb-12">
-            <h3 className="text-2xl md:text-3xl font-bold text-[color:var(--color-primary)] mb-4">
-              Découvrez nos solutions en images
-            </h3>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Parcourez notre gamme complète de prothèses et orthèses conçues 
-              avec précision pour répondre à tous vos besoins.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            
-            {/* Galerie Prothèses */}
-            <div>
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-12 h-12 bg-[color:var(--color-primary)] rounded-full flex items-center justify-center">
-                  <FontAwesomeIcon icon={faWrench} className="w-6 h-6 text-white" />
-                </div>
-                <h4 className="text-xl md:text-2xl font-bold text-[color:var(--color-primary)]">
-                  Nos Prothèses
-                </h4>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-4">
-                {prothesesImages.map((img, index) => (
-                  <div 
-                    key={index} 
-                    className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 hover:border-[color:var(--color-secondary)]"
-                  >
-                    {/* Vraie image */}
-                    <div className="w-full h-24 md:h-32 relative overflow-hidden">
-                      <Image
-                        src={img.src}
-                        alt={img.alt}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                        sizes="(max-width: 768px) 50vw, 25vw"
-                      />
-                    </div>
-                    
-                    {/* Nom de la solution */}
-                    <div className="p-3">
-                      <h5 className="text-sm md:text-base font-semibold text-[color:var(--color-primary)] text-center">
-                        {img.name}
-                      </h5>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Galerie Orthèses */}
-            <div>
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-12 h-12 bg-[color:var(--color-secondary)] rounded-full flex items-center justify-center">
-                  <FontAwesomeIcon icon={faShield} className="w-6 h-6 text-white" />
-                </div>
-                <h4 className="text-xl md:text-2xl font-bold text-[color:var(--color-primary)]">
-                  Nos Orthèses
-                </h4>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-4">
-                {orthesesImages.slice(0, 4).map((img, index) => (
-                  <div 
-                    key={index} 
-                    className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 hover:border-[color:var(--color-secondary)]"
-                  >
-                    {/* Vraie image */}
-                    <div className="w-full h-24 md:h-32 relative overflow-hidden">
-                      <Image
-                        src={img.src}
-                        alt={img.alt}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                        sizes="(max-width: 768px) 50vw, 25vw"
-                      />
-                    </div>
-                    
-                    {/* Nom de la solution */}
-                    <div className="p-3">
-                      <h5 className="text-sm md:text-base font-semibold text-[color:var(--color-primary)] text-center">
-                        {img.name}
-                      </h5>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              
-              {/* 5ème item centré en bas */}
-              <div className="mt-4 flex justify-center">
-                <div className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 hover:border-[color:var(--color-secondary)] w-full max-w-[200px]">
-                  <div className="w-full h-24 md:h-32 relative overflow-hidden">
-                    <Image
-                      src={orthesesImages[4].src}
-                      alt={orthesesImages[4].alt}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      sizes="(max-width: 768px) 50vw, 25vw"
-                    />
-                  </div>
-                  <div className="p-3">
-                    <h5 className="text-sm md:text-base font-semibold text-[color:var(--color-primary)] text-center">
-                      {orthesesImages[4].name}
-                    </h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Call-to-action pour plus d'informations */}
-          <div className="text-center mt-12 pt-8 border-t border-gray-200">
-            <p className="text-gray-600 mb-6">
-              Besoin de plus d&apos;informations sur nos solutions ?
-            </p>
-            <Link
-              href="#contact"
-              className="cta-primary interaction-feedback inline-flex items-center justify-center text-white font-semibold px-8 py-4 rounded-lg shadow-lg"
-            >
-              Contactez nos experts
-              <FontAwesomeIcon icon={faArrowRight} className="ml-2 w-5 h-5" />
-            </Link>
-          </div>
-        </div>
-
         {/* Section statistiques/confiance avec compteurs animés */}
         <div className="mt-20 pt-16 border-t border-gray-200">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div>
-              <div className="text-3xl md:text-4xl font-bold text-[color:var(--color-primary)] mb-2">
+              <div 
+                ref={yearsCounter.ref}
+                className="text-3xl md:text-4xl font-bold text-[color:var(--color-primary)] mb-2"
+              >
                 {yearsCounter.value}
               </div>
-              <p className="text-gray-600 font-medium">Années d&apos;expérience</p>
+              <p className="text-gray-600 font-medium">ans d&apos;expérience</p>
             </div>
             <div>
-              <div className="text-3xl md:text-4xl font-bold text-[color:var(--color-primary)] mb-2">
+              <div 
+                ref={patientsCounter.ref}
+                className="text-3xl md:text-4xl font-bold text-[color:var(--color-primary)] mb-2"
+              >
                 {patientsCounter.value}
               </div>
-              <p className="text-gray-600 font-medium">Patients accompagnés</p>
+              <p className="text-gray-600 font-medium">patients accompagnés / par an</p>
             </div>
             <div>
-              <div className="text-3xl md:text-4xl font-bold text-[color:var(--color-primary)] mb-2">
+              <div 
+                ref={satisfactionCounter.ref}
+                className="text-3xl md:text-4xl font-bold text-[color:var(--color-primary)] mb-2"
+              >
                 {satisfactionCounter.value}
               </div>
-              <p className="text-gray-600 font-medium">Satisfaction client</p>
+              <p className="text-gray-600 font-medium">satisfaction patient</p>
             </div>
           </div>
         </div>

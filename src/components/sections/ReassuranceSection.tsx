@@ -28,13 +28,13 @@ export default function ReassuranceSection() {
     },
     {
       icon: faHandshake,
-      title: "Première consultation gratuite",
+      title: "Des consultations gratuites",
       description: "Découvrez nos solutions sans engagement financier"
     },
     {
       icon: faCertificate,
       title: "Prise en charge CNAM",
-      description: "Conventionné sécurité sociale - Remboursement facilité"
+      description: "Conventionné sécurité sociale"
     },
     {
       icon: faHeart,
@@ -109,7 +109,7 @@ export default function ReassuranceSection() {
               Consultation gratuite
             </a>
             <a
-              href="https://wa.me/21698364964?text=Bonjour%2C%20j'aimerais%20avoir%20des%20informations%20sur%20vos%20services%20d'orthopédie."
+              href="https://wa.me/21699224446?text=Bonjour%2C%20j'aimerais%20avoir%20des%20informations%20sur%20vos%20services%20d'orthopédie."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-6 py-3 border-2 border-[color:var(--color-secondary)] text-[color:var(--color-secondary)] font-semibold rounded-lg hover:bg-[color:var(--color-secondary)] hover:text-white transition-all duration-300"
