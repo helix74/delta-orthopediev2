@@ -16,9 +16,9 @@ export default function TestimonialsSection() {
   const testimonials = [
     {
       quote: "Ils n'ont pas seulement réparé mon corps, ils m'ont aidé à reconstruire ma confiance.",
-      author: "Sarah M.",
-      age: "32 ans",
-      treatmentType: "Prothèse fémoro-tibiale",
+      author: "Ranim Z.",
+      age: "22 ans",
+      treatmentType: "Prothèse tibiale et esthétique",
       location: "Tunis",
       story: "Après mon accident, j'avais perdu espoir de retrouver ma mobilité. L'équipe de Delta Orthopédie m'a accompagnée avec une patience et une expertise exceptionnelles. Aujourd'hui, je peux à nouveau courir et danser.",
       rating: 5,

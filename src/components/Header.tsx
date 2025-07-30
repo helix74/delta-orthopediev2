@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { cn } from "@/lib/utils";
@@ -71,10 +72,19 @@ export default function Header() {
           {/* Logo */}
           <Link 
             href="/"
-            className="flex items-center space-x-2 text-xl lg:text-2xl font-bold text-[color:var(--color-primary)] hover:opacity-80 transition-opacity"
+            className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
             onClick={handleLinkClick}
           >
-            <span>Delta Orthopédie</span>
+            <div className="relative w-32 h-12 md:w-40 md:h-14">
+              <Image
+                src="/images/logos/delta-orthopedie-logo.png"
+                alt="Delta Orthopédie - Solutions orthopédiques de qualité"
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 128px, 160px"
+                priority
+              />
+            </div>
           </Link>
 
           {/* Navigation Desktop */}

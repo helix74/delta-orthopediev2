@@ -30,17 +30,17 @@ export default function ContactSection() {
   const contactInfo = [
     {
       location: "Tunis",
-      address: "Rue du Lac de Constance, Les Berges du Lac, 1053 Tunis",
-      phone: "+216 94 800 353",
-      whatsapp: ["+216 99 224 446", "+216 94 800 353"],
+      address: "Immeuble Golden Queen, Avenue Habib Bourguiba, Le Bardo, Tunis",
+      phone: "+216 71 516 033",
+      whatsapp: ["+216 94 800 353", "+216 99 224 446"],
       email: "contact@deltaorthopedie.tn"
     },
     {
       location: "Sousse",
-      address: "Rue de la Médina, 4000 Sousse",
-      phone: "+216 94 800 353",
-      whatsapp: ["+216 99 224 446"],
-      email: "sousse@deltaorthopedie.tn"
+      address: "14 Av. Yasser Arafet, Résidence le Boulvard, 2eme étage, Sahloul, Sousse",
+      phone: "+216 36 466 422",
+      whatsapp: ["+216 99 217 422"],
+      email: "contact@deltaorthopedie.tn"
     }
   ];
 

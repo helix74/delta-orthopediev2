@@ -17,12 +17,27 @@ export const metadata: Metadata = {
   description: "Votre partenaire de confiance pour des solutions orthopédiques personnalisées. Expertise, précision et accompagnement humain pour votre bien-être.",
   keywords: ["orthopédie", "prothèses", "orthèses", "appareillage", "handicap", "mobilité"],
   authors: [{ name: "Delta Orthopédie" }],
+  icons: {
+    icon: "/images/logos/favicon.ico",
+    shortcut: "/images/logos/favicon.ico",
+    apple: "/images/logos/favicon.ico",
+  },
   openGraph: {
     title: "Delta Orthopédie - Solutions Prothétiques de Qualité",
     description: "Votre partenaire de confiance pour des solutions orthopédiques personnalisées.",
     type: "website",
     locale: "fr_FR",
   },
+  // Optimisations de performance
+  robots: "index, follow",
+  other: {
+    "theme-color": "#2277a3",
+  },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

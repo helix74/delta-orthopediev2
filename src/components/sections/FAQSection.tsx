@@ -10,7 +10,8 @@ import {
   faClock,
   faShieldAlt,
   faTools,
-  faHeartbeat
+  faHeartbeat,
+  faMoneyBill
 } from "@fortawesome/free-solid-svg-icons";
 
 /**
@@ -23,11 +24,11 @@ export default function FAQSection() {
   const faqCategories = [
     {
       title: "Questions financières",
-      icon: faEuroSign,
+      icon: faMoneyBill,
       faqs: [
         {
           question: "Combien coûte une prothèse sur-mesure ?",
-          answer: "Le coût varie selon le type d'appareillage (300€ à 15 000€). Nous sommes conventionnés CNAM et vous accompagnons dans les démarches de remboursement. La première consultation est gratuite pour établir un devis personnalisé."
+          answer: "Le coût varie selon le type d'appareillage. Nous sommes conventionnés CNAM et vous accompagnons dans les démarches de prise de bon d'achat. Notre consultation est gratuite pour établir un devis personnalisé."
         },
         {
           question: "Ma mutuelle prend-elle en charge les frais ?",
@@ -63,7 +64,7 @@ export default function FAQSection() {
       faqs: [
         {
           question: "Quelle garantie sur mes appareillages ?",
-          answer: "Garantie fabricant de 2 ans + garantie satisfaction Delta Orthopédie. Maintenance et petites réparations gratuites à vie."
+          answer: "Une garantie est accordée selon les composantes de la prothèse, allant de 6 mois à 5 ans. L’entretien et les petites réparations sont offerts gratuitement à vie."
         },
         {
           question: "Vos prothèses sont-elles de qualité médicale ?",

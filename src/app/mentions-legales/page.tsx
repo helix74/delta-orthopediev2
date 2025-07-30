@@ -34,8 +34,8 @@ export default function MentionsLegalesPage() {
                 <p><strong>Forme juridique :</strong> [À compléter]</p>
                 <p><strong>Capital social :</strong> [À compléter]</p>
                 <p><strong>Numéro d&apos;immatriculation :</strong> [À compléter]</p>
-                <p><strong>Siège social :</strong> Rue du Lac de Constance, Les Berges du Lac, 1053 Tunis, Tunisie</p>
-                <p><strong>Téléphone :</strong> +216 71 964 964</p>
+                <p><strong>Siège social :</strong> Immeuble Golden Queen, Avenue Habib Bourguiba, Le Bardo, Tunis</p>
+                <p><strong>Téléphone :</strong> +216 71 516 033</p>
                 <p><strong>Email :</strong> contact@deltaorthopedie.tn</p>
               </div>
             </section>
@@ -128,9 +128,9 @@ export default function MentionsLegalesPage() {
                 Pour toute question relative aux présentes mentions légales, vous pouvez nous contacter :
               </p>
               <ul className="list-disc list-inside mt-4 space-y-2 text-gray-900">
-                <li>Par téléphone : +216 71 964 964</li>
+                <li>Par téléphone : +216 71 516 033</li>
                 <li>Par email : contact@deltaorthopedie.tn</li>
-                <li>Par courrier : Rue du Lac de Constance, Les Berges du Lac, 1053 Tunis, Tunisie</li>
+                <li>Par courrier : Immeuble Golden Queen, Avenue Habib Bourguiba, Le Bardo, Tunis</li>
               </ul>
             </section>
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import FoxifyCredit from "./FoxifyCredit";
@@ -17,7 +18,7 @@ export default function Footer() {
 
   const socialLinks = [
     {
-      href: "https://facebook.com/deltaorthopedie",
+      href: "https://www.facebook.com/Centre.Deltaorthopedie",
       label: "Facebook",
       icon: faFacebookF,
     },
@@ -37,9 +38,17 @@ export default function Footer() {
           
           {/* Logo et description */}
           <div className="md:col-span-1">
-            <h3 className="text-2xl font-bold text-white mb-4">
-              Delta Orthopédie
-            </h3>
+            <div className="flex items-center mb-4">
+              <div className="relative w-32 h-12 mr-4">
+                <Image
+                  src="/images/logos/delta-orthopedie-logo.png"
+                  alt="Delta Orthopédie - Solutions orthopédiques de qualité"
+                  fill
+                  className="object-contain brightness-0 invert"
+                  sizes="128px"
+                />
+              </div>
+            </div>
             <p className="text-blue-200 leading-relaxed">
               Votre partenaire de confiance pour des solutions orthopédiques de qualité. 
               Précision, humanité et expertise à votre service.

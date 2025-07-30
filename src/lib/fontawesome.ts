@@ -1,4 +1,6 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
+
+// Import optimisé - seulement les icônes nécessaires
 import { 
   faBars,
   faTimes,
@@ -34,15 +36,33 @@ import {
   faVideo,
   faChevronLeft,
   faChevronRight,
-  faPaperPlane
+  faPaperPlane,
+  faUserShield,
+  faHandshake,
+  faGraduationCap,
+  faCertificate,
+  faShieldAlt,
+  faComments,
+  faUserMd,
+  faRuler,
+  faCog,
+  faUserCheck,
+  faCalendarCheck,
+  faChevronDown,
+  faChevronUp,
+  faQuestionCircle,
+  faEuroSign,
+  faTools,
+  faHeartbeat
 } from '@fortawesome/free-solid-svg-icons';
+
 import { 
   faWhatsapp,
   faFacebook,
   faInstagram
 } from '@fortawesome/free-brands-svg-icons';
 
-// Add icons to the library so they can be used with string names
+// Add icons to the library - optimisé pour les performances
 library.add(
   // Navigation icons
   faBars,
@@ -92,5 +112,24 @@ library.add(
   // Social media icons
   faWhatsapp,
   faFacebook,
-  faInstagram
+  faInstagram,
+  
+  // Additional icons
+  faUserShield,
+  faHandshake,
+  faGraduationCap,
+  faCertificate,
+  faShieldAlt,
+  faComments,
+  faUserMd,
+  faRuler,
+  faCog,
+  faUserCheck,
+  faCalendarCheck,
+  faChevronDown,
+  faChevronUp,
+  faQuestionCircle,
+  faEuroSign,
+  faTools,
+  faHeartbeat
 ); 

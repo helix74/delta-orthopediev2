@@ -43,8 +43,8 @@ export default function PolitiqueConfidentialitePage() {
               </h2>
               <div className="bg-[color:var(--color-black-haze)] rounded-lg p-6">
                 <p><strong>Delta Orthopédie</strong></p>
-                <p>Rue du Lac de Constance, Les Berges du Lac, 1053 Tunis, Tunisie</p>
-                <p>Téléphone : +216 71 964 964</p>
+                <p>Immeuble Golden Queen, Avenue Habib Bourguiba, Le Bardo, Tunis</p>
+                <p>Téléphone : +216 71 516 033</p>
                 <p>Email : contact@deltaorthopedie.tn</p>
               </div>
             </section>
@@ -231,8 +231,8 @@ export default function PolitiqueConfidentialitePage() {
               <p>Pour toute question concernant cette politique :</p>
               <div className="bg-[color:var(--color-black-haze)] rounded-lg p-6 mt-4">
                 <p><strong>Email :</strong> contact@deltaorthopedie.tn</p>
-                <p><strong>Téléphone :</strong> +216 71 964 964</p>
-                <p><strong>Courrier :</strong> Delta Orthopédie, Rue du Lac de Constance, Les Berges du Lac, 1053 Tunis, Tunisie</p>
+                <p><strong>Téléphone :</strong> +216 71 516 033</p>
+                <p><strong>Courrier :</strong> Delta Orthopédie, Immeuble Golden Queen, Avenue Habib Bourguiba, Le Bardo, Tunis</p>
               </div>
             </section>
 
