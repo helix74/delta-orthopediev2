@@ -254,7 +254,7 @@ export default function OfferSection() {
               Nos domaines d&apos;expertise
             </h3>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Découvrez l&apos;étendue de nos compétences en orthopédie moderne
+              Découvrez l'étendue de nos compétences en orthopédie moderne
             </p>
           </div>
 

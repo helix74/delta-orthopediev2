@@ -23,6 +23,23 @@ const nextConfig = {
         port: '3000',
         pathname: '/**',
       },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '1337',
+        pathname: '/**',
+      },
+      // Configuration pour Strapi Cloud
+      {
+        protocol: 'https',
+        hostname: '*.strapiapp.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.strapi.io',
+        pathname: '/**',
+      },
     ],
   },
 };

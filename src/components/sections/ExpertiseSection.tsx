@@ -3,13 +3,18 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUsers, faIndustry, faEye, faAward, faClock, faHeart, faCamera } from "@fortawesome/free-solid-svg-icons";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { StrapiData, ExpertiseData, strapiService } from "@/lib/strapi";
+
+interface ExpertiseSectionProps {
+  data?: StrapiData<any>[];
+}
 
 /**
  * ExpertiseSection - Section Notre Expertise
  * Objectif : Détailler le "Pourquoi nous ?" et donner vie à la promesse de partenariat
  * Structure : Grille 3 points forts + Présentation des fondateurs + Galerie équipe
  */
-export default function ExpertiseSection() {
+export default function ExpertiseSection({ data }: ExpertiseSectionProps) {
   // Animations optimisées
   const { ref: titleRef } = useScrollReveal({ threshold: 0.2 });
   const { ref: subtitleRef } = useScrollReveal({ threshold: 0.2 });
@@ -17,8 +22,13 @@ export default function ExpertiseSection() {
   const { ref: foundersRef } = useScrollReveal({ threshold: 0.3 });
   const { ref: expertiseGalleryRef } = useScrollReveal({ threshold: 0.1 });
 
-  // Points forts de l'expertise
-  const expertisePoints = [
+  // Utiliser les données Strapi ou les données par défaut
+  const expertisePoints = data && data.length > 0 ? data.map(item => ({
+    icon: faUsers, // Icône par défaut, peut être personnalisée
+    title: item.title,
+    description: item.description,
+    features: item.features || ["Certifiés ISPO Cat. II", "Formation continue", "Expertise internationale"]
+  })) : [
     {
       icon: faUsers,
       title: "Une Équipe Dédiée",
@@ -146,7 +156,7 @@ export default function ExpertiseSection() {
 
                 {/* Features */}
                 <div className="space-y-2">
-                  {point.features.map((feature, featureIndex) => (
+                  {point.features.map((feature: string, featureIndex: number) => (
                     <div key={featureIndex} className="flex items-center text-sm text-gray-500">
                       <div className="w-2 h-2 bg-[color:var(--color-secondary)] rounded-full mr-3"></div>
                       <span>{feature}</span>

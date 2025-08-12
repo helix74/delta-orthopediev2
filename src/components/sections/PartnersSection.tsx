@@ -1,13 +1,23 @@
 import Image from "next/image";
+import { StrapiData, PartnerData, strapiService } from "@/lib/strapi";
+
+interface PartnersSectionProps {
+  data?: StrapiData<any>[];
+}
 
 /**
  * PartnersSection - Section de preuve sociale
  * Objectif : Établir instantanément la crédibilité et le sérieux
  * de Delta Orthopédie à travers ses partenaires et certifications
  */
-export default function PartnersSection() {
-  // Données des partenaires/certifications avec vraies images
-  const partners = [
+export default function PartnersSection({ data }: PartnersSectionProps) {
+  // Utiliser les données Strapi ou les données par défaut
+  const partners = data && data.length > 0 ? data.map(item => ({
+    name: item.name,
+    description: item.description || "Partenaire Delta Orthopédie",
+    logoPath: strapiService.getImageUrl(item.logo) || "/images/logos/default-partner.png",
+    alt: `Logo ${item.name} - ${item.description || "Partenaire Delta Orthopédie"}`
+  })) : [
     {
       name: "Ottobock",
       description: "Leader mondial en orthopédie",
@@ -56,10 +66,10 @@ export default function PartnersSection() {
             Un savoir-faire reconnu et certifié
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Nous collaborons avec les leaders internationaux de l&apos;orthopédie, 
+            Nous collaborons avec les leaders internationaux de l'orthopédie, 
             les organisations mondiales spécialisées en éducation, formation et recherche 
-            dans le domaine de l&apos;appareillage orthopédique, ainsi qu&apos;avec 
-            l&apos;ensemble des acteurs du secteur.
+            dans le domaine de l'appareillage orthopédique, ainsi qu'avec 
+            l'ensemble des acteurs du secteur.
           </p>
         </div>
 

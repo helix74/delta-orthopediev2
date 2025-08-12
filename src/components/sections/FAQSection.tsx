@@ -13,15 +13,30 @@ import {
   faHeartbeat,
   faMoneyBill
 } from "@fortawesome/free-solid-svg-icons";
+import { StrapiData, FAQData, strapiService } from "@/lib/strapi";
+
+interface FAQSectionProps {
+  data?: StrapiData<any>[];
+}
 
 /**
  * FAQSection - Questions fréquemment posées
  * Objectif : Répondre aux inquiétudes communes des patients en orthopédie
  */
-export default function FAQSection() {
+export default function FAQSection({ data }: FAQSectionProps) {
   const [openFAQ, setOpenFAQ] = useState<number | null>(0);
 
-  const faqCategories = [
+  // Utiliser les données Strapi ou les données par défaut
+  const faqCategories = data && data.length > 0 ? [
+    {
+      title: "Questions générales",
+      icon: faQuestionCircle,
+      faqs: data.map(item => ({
+        question: item.question,
+        answer: item.answer
+      }))
+    }
+  ] : [
     {
       title: "Questions financières",
       icon: faMoneyBill,
@@ -64,7 +79,7 @@ export default function FAQSection() {
       faqs: [
         {
           question: "Quelle garantie sur mes appareillages ?",
-          answer: "Une garantie est accordée selon les composantes de la prothèse, allant de 6 mois à 5 ans. L’entretien et les petites réparations sont offerts gratuitement à vie."
+          answer: "Une garantie est accordée selon les composantes de la prothèse, allant de 6 mois à 5 ans. L'entretien et les petites réparations sont offerts gratuitement à vie."
         },
         {
           question: "Vos prothèses sont-elles de qualité médicale ?",

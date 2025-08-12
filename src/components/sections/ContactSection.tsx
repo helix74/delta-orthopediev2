@@ -10,13 +10,18 @@ import {
   faPaperPlane
 } from "@fortawesome/free-solid-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { StrapiData, ContactData, strapiService } from "@/lib/strapi";
+
+interface ContactSectionProps {
+  data?: StrapiData<any> | null;
+}
 
 /**
  * ContactSection - Section de contact
  * Objectif : Convertir l'intérêt en une prise de contact simple
  * Structure : Formulaire de contact + Informations de contact réelles
  */
-export default function ContactSection() {
+export default function ContactSection({ data }: ContactSectionProps) {
   const [formData, setFormData] = useState({
     nom: "",
     email: "",
@@ -26,29 +31,43 @@ export default function ContactSection() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Utiliser les données Strapi ou les données par défaut
+  const contactData = data?.attributes || {
+    phone: "+216 71 516 033",
+    email: "contact@deltaorthopedie.tn",
+    address: "Immeuble Golden Queen, Avenue Habib Bourguiba, Le Bardo, Tunis",
+    openingHours: {
+      lundi: "8h00 à 17h00",
+      mardi: "8h00 à 17h00",
+      mercredi: "8h00 à 17h00",
+      jeudi: "8h00 à 17h00",
+      vendredi: "8h00 à 17h00",
+      samedi: "8h00 à 13h00",
+      dimanche: "Fermé"
+    },
+    emergencyPhone: "+216 94 800 353",
+    socialMedia: {
+      facebook: "https://facebook.com/delta-orthopedie",
+      instagram: "https://instagram.com/delta-orthopedie",
+      linkedin: "https://linkedin.com/company/delta-orthopedie"
+    }
+  };
+
   // Informations de contact réelles Delta Orthopédie
   const contactInfo = [
     {
       location: "Tunis",
-      address: "Immeuble Golden Queen, Avenue Habib Bourguiba, Le Bardo, Tunis",
-      phone: "+216 71 516 033",
-      whatsapp: ["+216 94 800 353", "+216 99 224 446"],
-      email: "contact@deltaorthopedie.tn"
-    },
-    {
-      location: "Sousse",
-      address: "14 Av. Yasser Arafet, Résidence le Boulvard, 2eme étage, Sahloul, Sousse",
-      phone: "+216 36 466 422",
-      whatsapp: ["+216 99 217 422"],
-      email: "contact@deltaorthopedie.tn"
+      address: contactData.address,
+      phone: contactData.phone,
+      whatsapp: [contactData.emergencyPhone || "+216 94 800 353"],
+      email: contactData.email
     }
   ];
 
-  const businessHours = [
-    { days: "Lundi à Vendredi", hours: "8h00 à 17h00" },
-    { days: "Samedi", hours: "8h00 à 13h00" },
-    { days: "Dimanche", hours: "Fermé" }
-  ];
+  const businessHours = Object.entries(contactData.openingHours).map(([day, hours]) => ({
+    days: day.charAt(0).toUpperCase() + day.slice(1),
+    hours: hours
+  }));
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -268,7 +287,7 @@ export default function ContactSection() {
                 {businessHours.map((schedule, index) => (
                   <div key={index} className="flex justify-between items-center text-sm">
                     <span className="text-gray-600">{schedule.days}</span>
-                    <span className="font-semibold text-[color:var(--color-primary)]">{schedule.hours}</span>
+                    <span className="font-semibold text-[color:var(--color-primary)]">{String(schedule.hours)}</span>
                   </div>
                 ))}
               </div>

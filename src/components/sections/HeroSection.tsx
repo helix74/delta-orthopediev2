@@ -10,14 +10,31 @@ import {
   faPhone
 } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
+import { StrapiData, HeroData, strapiService } from "@/lib/strapi";
+
+interface HeroSectionProps {
+  data?: StrapiData<HeroData> | null;
+}
 
 /**
  * HeroSection - Section d'accueil principale avec vidéo en arrière-plan
  * Objectif : Impact visuel maximum avec vidéo immersive + contenu overlay
  * Approche 2 : Vidéo background avec overlay texte et contrôles
  */
-export default function HeroSection() {
+export default function HeroSection({ data }: HeroSectionProps) {
   const [isMuted, setIsMuted] = useState(true);
+
+  // Données par défaut si pas de données Strapi
+  const heroData = data || {
+    title: 'Delta Orthopédie - Votre partenaire santé',
+    subtitle: 'Solutions orthopédiques personnalisées pour améliorer votre qualité de vie',
+    description: 'Nous vous accompagnons dans votre parcours de soins avec des solutions orthopédiques adaptées à vos besoins.',
+    primaryButtonText: 'Prendre rendez-vous',
+    primaryButtonLink: '#contact',
+    secondaryButtonText: 'Découvrir nos services',
+    secondaryButtonLink: '#expertise',
+    isActive: true
+  };
 
   const handleFullscreen = () => {
     const videoElement = document.querySelector('video');
@@ -100,49 +117,42 @@ export default function HeroSection() {
         </button>
       </div>
 
-      {/* Contenu principal overlay */}
-      <div className="relative z-10 flex items-center min-h-screen">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-20">
-          <div className="max-w-4xl">
-            
-            {/* Titre principal H1 */}
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
-              Plus qu&apos;une prothèse.
-              <br />
-              <span className="text-[color:var(--color-secondary)]">
-                Le premier pas
-              </span>
-              <br />
-              vers votre nouvelle vie.
-            </h1>
-            
-            {/* Paragraphe descriptif - Taille normalisée */}
-            <p 
-              className="text-lg md:text-xl text-white/95 mb-8 leading-relaxed max-w-3xl"
+      {/* Contenu principal - CENTRÉ ET RESPONSIVE */}
+      <div className="relative z-10 flex items-start justify-center min-h-screen px-4 md:px-8 pt-28 md:pt-32">
+        <div className="text-center max-w-4xl mx-auto">
+          {/* Titre principal - TAILLE ADAPTATIVE */}
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 leading-tight">
+            {heroData.title}
+          </h1>
+          
+          {/* Sous-titre - LISIBILITÉ OPTIMISÉE */}
+          <p className="text-lg md:text-xl lg:text-2xl text-white/90 mb-6 md:mb-8 max-w-3xl mx-auto leading-relaxed">
+            {heroData.subtitle}
+          </p>
+          
+          {/* Description - TEXTE PLUS DÉTAILLÉ */}
+          <div className="text-base md:text-lg text-white/80 mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">
+            {heroData.description}
+          </div>
+
+          {/* Boutons d'action - ESPACEMENT OPTIMISÉ */}
+          <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
+            {/* Bouton principal */}
+            <Link 
+              href={heroData.primaryButtonLink || '#contact'}
+              className="inline-flex items-center gap-2 bg-white text-[color:var(--color-primary)] px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold text-base md:text-lg hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
             >
-              Chez Delta Orthopédie, nous ne fabriquons pas seulement des appareillages. 
-              Nous co-construisons avec vous un projet de mobilité et d&apos;autonomie.
-            </p>
+              {heroData.primaryButtonText || 'Prendre rendez-vous'}
+              <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4" />
+            </Link>
             
-            {/* Call-to-Action - Simple et efficace */}
-            <div className="flex flex-col sm:flex-row items-start gap-4 mt-8">
-              <Link
-                href="#solutions"
-                className="cta-primary interaction-feedback inline-flex items-center justify-center px-6 py-3 text-white font-semibold text-base rounded-lg shadow-xl"
-              >
-                Découvrir nos solutions
-                <FontAwesomeIcon icon={faArrowRight} className="ml-2 w-5 h-5" />
-              </Link>
-              
-              <Link
-                href="#contact"
-                className="interaction-feedback inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white font-semibold text-base rounded-lg hover:bg-white hover:text-[color:var(--color-primary)] transition-all duration-300"
-              >
-                <FontAwesomeIcon icon={faPhone} className="mr-2 w-5 h-5" />
-                Prendre RDV
-              </Link>
-            </div>
-            
+            {/* Bouton secondaire */}
+            <Link 
+              href={heroData.secondaryButtonLink || '#expertise'}
+              className="inline-flex items-center gap-2 border-2 border-white text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold text-base md:text-lg hover:bg-white hover:text-[color:var(--color-primary)] transition-all duration-300"
+            >
+              {heroData.secondaryButtonText || 'Découvrir nos services'}
+            </Link>
           </div>
         </div>
       </div>

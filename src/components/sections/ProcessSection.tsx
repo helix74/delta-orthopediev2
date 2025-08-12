@@ -48,13 +48,13 @@ export default function ProcessSection() {
       title: "Fabrication sur-mesure",
       description: "Création de votre appareillage dans notre atelier",
       duration: "2-3 semaines",
-      details: ["Fabrication artisanale", "Contrôles qualité réguliers", "Communication sur l&apos;avancement"]
+      details: ["Fabrication artisanale", "Contrôles qualité réguliers", "Communication sur l'avancement"]
     },
     {
       number: "05",
       icon: faUserCheck,
       title: "Essayage et ajustements",
-      description: "Test de l&apos;appareillage et modifications si besoin",
+      description: "Test de l'appareillage et modifications si besoin",
       duration: "1 heure",
       details: ["Premier essayage complet", "Ajustements immédiats", "Vérification du confort"]
     },

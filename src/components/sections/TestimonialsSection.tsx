@@ -3,17 +3,85 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuoteLeft, faStar, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { StrapiData, TestimonialData, strapiService } from "@/lib/strapi";
+
+interface TestimonialsSectionProps {
+  data?: StrapiData<any>[];
+}
 
 /**
  * TestimonialsSection - Section des témoignages
  * Objectif : Valider l'argumentation par la preuve la plus forte - l'émotion d'un patient
  * Structure : Plusieurs témoignages avec navigation
  */
-export default function TestimonialsSection() {
+export default function TestimonialsSection({ data }: TestimonialsSectionProps) {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
-  // Témoignages patients (données réelles à personnaliser)
-  const testimonials = [
+  // Utiliser les données Strapi ou les données par défaut
+  const testimonials = data && data.length > 0 ? data.map(item => {
+    // Utiliser le champ description s'il existe, sinon extraire de testimonial
+    const testimonialText = item.testimonial;
+    const hasDescription = item.description && item.description.trim() !== '';
+    
+    let quote, story;
+    
+    if (hasDescription) {
+      // Si description existe, utiliser testimonial comme citation et description comme histoire
+      quote = testimonialText;
+      story = item.description;
+    } else {
+      // Sinon, extraire la première phrase comme citation et le reste comme description
+      const firstSentence = testimonialText.split('.')[0] + '.';
+      quote = firstSentence;
+      story = testimonialText.replace(firstSentence, '').trim() || testimonialText;
+    }
+
+    // Points clés personnalisés selon le type de traitement
+    const getKeyPoints = (treatmentType: string) => {
+      const type = treatmentType.toLowerCase();
+      if (type.includes('prothèse') && type.includes('bras')) {
+        return [
+          "Formation approfondie à la prothèse myoélectrique",
+          "Adaptation spécifique au métier d'artisan",
+          "Retour au travail en 3 mois",
+          "Précision retrouvée pour les gestes fins"
+        ];
+      } else if (type.includes('pédiatrique')) {
+        return [
+          "Prothèses évolutives adaptées à la croissance",
+          "Accompagnement psychologique familial",
+          "Intégration scolaire et sociale réussie",
+          "Suivi sur 5 ans avec renouvellement régulier"
+        ];
+      } else if (type.includes('tibiale') || type.includes('esthétique')) {
+        return [
+          "Accompagnement personnalisé sur 6 mois",
+          "Adaptation progressive et formation",
+          "Suivi psychologique inclus",
+          "Retour aux activités sportives"
+        ];
+      } else {
+        // Points clés génériques par défaut
+        return [
+          "Accompagnement personnalisé",
+          "Expertise technique",
+          "Suivi régulier",
+          "Résultats satisfaisants"
+        ];
+      }
+    };
+    
+    return {
+      quote: quote,
+      author: item.clientName,
+      age: "", // Pas dans le modèle Strapi actuel
+      treatmentType: item.service || "Traitement orthopédique",
+      location: item.location || "Tunis",
+      story: story,
+      rating: item.rating,
+      keyPoints: getKeyPoints(item.service || "")
+    };
+  }) : [
     {
       quote: "Ils n'ont pas seulement réparé mon corps, ils m'ont aidé à reconstruire ma confiance.",
       author: "Ranim Z.",
@@ -139,7 +207,7 @@ export default function TestimonialsSection() {
                 {/* Photo placeholder */}
                 <div className="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center mb-6 shadow-lg">
                   <span className="text-gray-500 font-semibold text-lg">
-                    {currentStory.author.split(' ').map(n => n[0]).join('')}
+                    {currentStory.author.split(' ').map((n: string) => n[0]).join('')}
                   </span>
                 </div>
 
@@ -239,7 +307,7 @@ export default function TestimonialsSection() {
                 <div className="text-center">
                   <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
                     <span className="text-gray-500 font-semibold">
-                      {testimonial.author.split(' ').map(n => n[0]).join('')}
+                      {testimonial.author.split(' ').map((n: string) => n[0]).join('')}
                     </span>
                   </div>
                   <h4 className="font-semibold text-[color:var(--color-primary)] mb-1">
