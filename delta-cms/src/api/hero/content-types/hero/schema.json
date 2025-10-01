@@ -1,0 +1,62 @@
+{
+  "kind": "singleType",
+  "collectionName": "heros",
+  "info": {
+    "singularName": "hero",
+    "pluralName": "heros",
+    "displayName": "Hero Section",
+    "description": "Section d'accueil principale avec vidéo et texte"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "Delta Orthopédie - Votre partenaire santé"
+    },
+    "subtitle": {
+      "type": "text",
+      "required": true,
+      "default": "Solutions orthopédiques personnalisées pour améliorer votre qualité de vie"
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "primaryButtonText": {
+      "type": "string",
+      "default": "Prendre rendez-vous"
+    },
+    "primaryButtonLink": {
+      "type": "string",
+      "default": "#contact"
+    },
+    "secondaryButtonText": {
+      "type": "string",
+      "default": "Découvrir nos services"
+    },
+    "secondaryButtonLink": {
+      "type": "string",
+      "default": "#expertise"
+    },
+    "videoUrl": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["videos"]
+    },
+    "backgroundImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+} 

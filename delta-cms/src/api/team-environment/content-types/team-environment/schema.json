@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "team_environments",
+  "info": {
+    "singularName": "team-environment",
+    "pluralName": "team-environments",
+    "displayName": "Team Environment",
+    "description": "Galerie d'images de l'équipe et de l'environnement"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "accueil",
+        "equipe",
+        "atelier",
+        "consultation",
+        "fabrication"
+      ],
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"]
+    },
+    "order": {
+      "type": "integer",
+      "default": 0,
+      "required": true
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    }
+  }
+}

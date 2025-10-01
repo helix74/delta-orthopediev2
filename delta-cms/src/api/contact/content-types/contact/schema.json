@@ -1,0 +1,44 @@
+{
+  "kind": "singleType",
+  "collectionName": "contacts",
+  "info": {
+    "singularName": "contact",
+    "pluralName": "contacts",
+    "displayName": "Contact",
+    "description": "Informations de contact"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "address": {
+      "type": "text",
+      "required": true
+    },
+    "openingHours": {
+      "type": "json",
+      "required": true
+    },
+    "emergencyPhone": {
+      "type": "string",
+      "required": false
+    },
+    "socialMedia": {
+      "type": "json",
+      "required": false
+    },
+    "mapEmbed": {
+      "type": "text",
+      "required": false
+    }
+  }
+} 

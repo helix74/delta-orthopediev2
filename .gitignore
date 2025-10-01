@@ -19,8 +19,16 @@ build/
 # Vercel
 .vercel
 
-# Strapi - Exclure complètement du repository principal
-delta-cms/
+# Strapi - Ignorer les fichiers générés mais garder les sources
+delta-cms/.env
+delta-cms/.env.*
+delta-cms/build/
+delta-cms/dist/
+delta-cms/.cache/
+delta-cms/.tmp/
+delta-cms/node_modules/
+delta-cms/public/uploads/*
+!delta-cms/public/uploads/.gitkeep
 
 # OS
 .DS_Store

@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "faqs",
+  "info": {
+    "singularName": "faq",
+    "pluralName": "faqs",
+    "displayName": "FAQ",
+    "description": "Questions fréquemment posées"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "question": {
+      "type": "string",
+      "required": true
+    },
+    "answer": {
+      "type": "richtext",
+      "required": true
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "general",
+        "services",
+        "rendez-vous",
+        "paiement",
+        "assurance"
+      ],
+      "default": "general"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "isPopular": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+} 

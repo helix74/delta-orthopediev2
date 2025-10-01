@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "expertises",
+  "info": {
+    "singularName": "expertise",
+    "pluralName": "expertises",
+    "displayName": "Expertise",
+    "description": "Services et domaines d'expertise"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "icon": {
+      "type": "string",
+      "required": false
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "features": {
+      "type": "json",
+      "required": false
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    }
+  }
+} 
