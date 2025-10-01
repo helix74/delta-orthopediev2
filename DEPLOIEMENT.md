@@ -1,13 +1,21 @@
-# 🚀 Guide de Déploiement - Delta Orthopédie
+# 🚀 Guide de Déploiement Complet - Delta Orthopédie
 
 ## 📋 Vue d'ensemble
 
-Ce guide vous accompagne pour déployer votre site web Delta Orthopédie en production.
+Ce guide vous accompagne pour déployer votre site web Delta Orthopédie en production avec toutes les fonctionnalités avancées.
 
-### **Architecture recommandée :**
-- **Frontend** : Next.js sur Vercel
-- **CMS** : Strapi sur Strapi Cloud
-- **Base de données** : PostgreSQL (inclus avec Strapi Cloud)
+### **Architecture déployée :**
+- **Frontend** : Next.js sur Vercel ✅
+- **CMS** : Strapi sur Strapi Cloud ✅
+- **Base de données** : PostgreSQL (inclus avec Strapi Cloud) ✅
+- **Repository** : GitHub `helix74/delta-orthopediev2` ✅
+
+### **Fonctionnalités incluses :**
+- ✅ **Galerie d'images dynamique** (Team Environment)
+- ✅ **Compteur d'images en temps réel**
+- ✅ **Content Types Strapi** complets
+- ✅ **Déploiement automatique** GitHub → Vercel
+- ✅ **API Strapi** intégrée
 
 ---
 
@@ -46,16 +54,35 @@ Ce guide vous accompagne pour déployer votre site web Delta Orthopédie en prod
 2. **Configurer les permissions :**
    - Allez dans Settings > Users & Permissions Plugin
    - Cliquez sur "Roles" > "Public"
-   - Activez "find" pour tous vos content types :
-     - Hero
-     - Expertises
-     - Testimonials
-     - FAQ
-     - Partners
-     - Contact
+   - Activez "find" et "findOne" pour tous vos content types :
+     - ✅ Hero : find
+     - ✅ Expertise : find, findOne
+     - ✅ **Team-environment** : find, findOne (NOUVEAU)
+     - ✅ Testimonial : find, findOne
+     - ✅ FAQ : find, findOne
+     - ✅ Partner : find, findOne
+     - ✅ Contact : find
 
 3. **Récupérer l'URL de votre CMS :**
    - Notez l'URL : `https://votre-projet.strapiapp.com`
+
+4. **Configurer Team Environment (Galerie d'images) :**
+   - Aller dans **Content Manager > Team Environment**
+   - **Create new entry** pour chaque image :
+     
+   | Titre | Description | Catégorie | Ordre | Image |
+   |-------|-------------|-----------|-------|-------|
+   | Entrée principale | Bienvenue chez Delta Orthopédie | accueil | 1 | accueil-entree-principale.webp |
+   | Réception | Un accueil personnalisé | accueil | 2 | accueil-reception.webp |
+   | Ambiance accueil | Environnement chaleureux | accueil | 3 | accueil-ambiance-generale.webp |
+   | Notre équipe | Équipe Delta Orthopédie | equipe | 4 | equipe-complete.webp |
+   | Atelier moulage | Salle de moulage moderne | atelier | 5 | atelier-moulage-1.webp |
+   | Équipements | Outils de précision | atelier | 6 | atelier-moulage-2.webp |
+   | Processus | Techniques avancées | atelier | 7 | atelier-moulage-3.webp |
+   | Finition | Contrôle qualité | atelier | 8 | atelier-moulage-4.webp |
+   | Consultation | Accompagnement patient | consultation | 9 | consultation-patient.webp |
+
+   - **Important** : Cliquer sur **Publish** pour chaque entrée
 
 ---
 
@@ -188,14 +215,71 @@ Ce guide vous accompagne pour déployer votre site web Delta Orthopédie en prod
 
 ---
 
+## 🔍 Vérification du déploiement
+
+### **Checklist de vérification :**
+
+#### **✅ GitHub Repository**
+- Repository : `https://github.com/helix74/delta-orthopediev2`
+- Derniers commits poussés
+- Fichiers de configuration présents
+
+#### **✅ Strapi CMS**
+- URL : `https://votre-projet.strapiapp.com`
+- Content Types créés :
+  - ✅ Hero, Expertise, Team Environment
+  - ✅ Testimonial, FAQ, Partner, Contact
+- Permissions configurées pour Public
+- Données Team Environment ajoutées et publiées
+
+#### **✅ Vercel Deployment**
+- URL : `https://votre-projet.vercel.app`
+- Variable d'environnement : `NEXT_PUBLIC_STRAPI_URL`
+- Build successful
+- Déploiement automatique activé
+
+#### **✅ Fonctionnalités à tester**
+1. **Galerie d'images** : Filtres dynamiques fonctionnent
+2. **Compteur d'images** : Nombre réel affiché
+3. **API Strapi** : Pas d'erreur 403/404
+4. **Contenu dynamique** : Modifications Strapi → Site web
+
+## 🚨 Dépannage
+
+### **Erreur 403 sur Team Environment**
+```bash
+# Solution : Vérifier les permissions dans Strapi
+Settings > Users & Permissions > Roles > Public
+Activer : team-environment.find et team-environment.findOne
+```
+
+### **Images ne s'affichent pas**
+```bash
+# Vérifier que les entrées sont Published dans Strapi
+Content Manager > Team Environment > Edit > Publish
+```
+
+### **Compteur statique (3, 1, 4, 1)**
+```bash
+# Le code du compteur dynamique n'est pas déployé
+# Vérifier le fichier ExpertiseSection.tsx ligne ~315
+```
+
+### **Forcer un redéploiement Vercel**
+```bash
+git commit --allow-empty -m "Force Vercel redeploy"
+git push origin main
+```
+
 ## 🎉 Félicitations !
 
 Votre site Delta Orthopédie est maintenant en ligne et opérationnel !
 
 ### **URLs importantes :**
 - **Site web** : `https://votre-projet.vercel.app`
-- **CMS** : `https://votre-projet.strapiapp.com`
-- **Documentation client** : `GUIDE_FINAL_CLIENTE.md`
+- **CMS Admin** : `https://votre-projet.strapiapp.com/admin`
+- **API Strapi** : `https://votre-projet.strapiapp.com/api`
+- **Repository** : `https://github.com/helix74/delta-orthopediev2`
 
 ### **Prochaines étapes :**
 1. ✅ Tester toutes les fonctionnalités
