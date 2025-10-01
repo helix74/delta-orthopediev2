@@ -1,12 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUsers, faIndustry, faEye, faAward, faClock, faHeart, faCamera } from "@fortawesome/free-solid-svg-icons";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { StrapiData, ExpertiseData, strapiService } from "@/lib/strapi";
+import { StrapiData, ExpertiseData, TeamEnvironmentData, strapiService } from "@/lib/strapi";
 
 interface ExpertiseSectionProps {
   data?: StrapiData<any>[];
+  teamEnvironmentData?: StrapiData<TeamEnvironmentData>[];
 }
 
 /**
@@ -14,7 +16,9 @@ interface ExpertiseSectionProps {
  * Objectif : Détailler le "Pourquoi nous ?" et donner vie à la promesse de partenariat
  * Structure : Grille 3 points forts + Présentation des fondateurs + Galerie équipe
  */
-export default function ExpertiseSection({ data }: ExpertiseSectionProps) {
+export default function ExpertiseSection({ data, teamEnvironmentData }: ExpertiseSectionProps) {
+  // État pour le filtre des catégories
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
   // Animations optimisées
   const { ref: titleRef } = useScrollReveal({ threshold: 0.2 });
   const { ref: subtitleRef } = useScrollReveal({ threshold: 0.2 });
@@ -69,39 +73,70 @@ export default function ExpertiseSection({ data }: ExpertiseSectionProps) {
     }
   ];
 
-  // Galerie d'images de l'équipe et de l'ambiance
-  const teamGallery = [
-    {
-      src: "/images/team/equipe-atelier.jpg",
-      alt: "Équipe Delta Orthopédie travaillant dans l'atelier de fabrication",
-      title: "Notre atelier",
-      description: "L'équipe en action dans notre atelier de fabrication"
-    },
-    {
-      src: "/images/team/consultation-patient.jpg", 
-      alt: "Consultation personnalisée avec un patient",
-      title: "Consultation",
-      description: "Accompagnement personnalisé de chaque patient"
-    },
-    {
-      src: "/images/team/fabrication-prothese.jpg",
-      alt: "Processus de fabrication d'une prothèse sur-mesure",
-      title: "Fabrication",
-      description: "Création minutieuse de vos appareillages"
-    },
-    {
-      src: "/images/team/ambiance-bureau.jpg",
-      alt: "Ambiance chaleureuse de l'accueil Delta Orthopédie",
-      title: "Accueil",
-      description: "Un environnement chaleureux et professionnel"
-    },
-    {
-      src: "/images/team/equipe-complete.jpg",
-      alt: "Photo de groupe de toute l'équipe Delta Orthopédie",
-      title: "Notre équipe",
-      description: "Toute l'équipe Delta Orthopédie réunie"
-    }
-  ];
+  // Galerie d'images dynamique depuis Strapi ou fallback statique
+  const teamGallery = teamEnvironmentData && teamEnvironmentData.length > 0 
+    ? teamEnvironmentData.map(item => ({
+        src: strapiService.getImageUrl(item.image) || "/images/expertise/placeholder.webp",
+        alt: item.image?.alternativeText || item.title,
+        title: item.title,
+        description: item.description,
+        category: item.category
+      }))
+    : [
+        {
+          src: "/images/expertise/accueil-entree-principale.webp",
+          alt: "Entrée principale Delta Orthopédie",
+          title: "Entrée principale",
+          description: "Bienvenue chez Delta Orthopédie",
+          category: "accueil" as const
+        },
+        {
+          src: "/images/expertise/equipe-complete.webp",
+          alt: "Équipe complète Delta Orthopédie",
+          title: "Notre équipe",
+          description: "L'équipe Delta Orthopédie au complet",
+          category: "equipe" as const
+        },
+        {
+          src: "/images/expertise/atelier-moulage-1.webp",
+          alt: "Atelier de moulage moderne",
+          title: "Atelier de moulage",
+          description: "Salle de moulage moderne et équipée",
+          category: "atelier" as const
+        },
+        {
+          src: "/images/expertise/consultation-patient.webp",
+          alt: "Consultation personnalisée avec un patient",
+          title: "Consultation patient",
+          description: "Accompagnement personnalisé du patient",
+          category: "consultation" as const
+        }
+      ];
+
+  // Filtrer les images par catégorie
+  const filteredGallery = selectedCategory === 'all' 
+    ? teamGallery 
+    : teamGallery.filter(image => image.category === selectedCategory);
+
+  // Compter les images par catégorie
+  const categoryCounts = {
+    all: teamGallery.length,
+    accueil: teamGallery.filter(img => img.category === 'accueil').length,
+    equipe: teamGallery.filter(img => img.category === 'equipe').length,
+    atelier: teamGallery.filter(img => img.category === 'atelier').length,
+    consultation: teamGallery.filter(img => img.category === 'consultation').length,
+    fabrication: teamGallery.filter(img => img.category === 'fabrication').length
+  };
+
+  // Catégories de filtre (masquer les catégories vides sauf 'all')
+  const filterCategories = [
+    { key: 'all', label: 'Tout', count: categoryCounts.all },
+    { key: 'accueil', label: 'Accueil', count: categoryCounts.accueil },
+    { key: 'equipe', label: 'Équipe', count: categoryCounts.equipe },
+    { key: 'atelier', label: 'Atelier', count: categoryCounts.atelier },
+    { key: 'consultation', label: 'Consultation', count: categoryCounts.consultation },
+    { key: 'fabrication', label: 'Fabrication', count: categoryCounts.fabrication }
+  ].filter(category => category.key === 'all' || category.count > 0);
 
   return (
     <section 
@@ -261,24 +296,54 @@ export default function ExpertiseSection({ data }: ExpertiseSectionProps) {
               Une équipe passionnée dans un environnement moderne et chaleureux
             </p>
           </div>
+
+          {/* Filtres de catégorie */}
+          <div className="flex flex-wrap justify-center gap-3 mb-8">
+            {filterCategories.map((category) => (
+              <button
+                key={category.key}
+                onClick={() => setSelectedCategory(category.key)}
+                className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
+                  selectedCategory === category.key
+                    ? 'bg-[color:var(--color-secondary)] text-white shadow-lg'
+                    : 'bg-white text-gray-600 hover:bg-[color:var(--color-secondary)]/10 hover:text-[color:var(--color-secondary)]'
+                }`}
+              >
+                {category.label} ({category.count})
+              </button>
+            ))}
+          </div>
           
           <div 
             ref={expertiseGalleryRef as React.RefObject<HTMLDivElement>}
             className="grid grid-cols-2 md:grid-cols-4 gap-4"
           >
-              {teamGallery.map((image, index) => (
+              {filteredGallery.map((image, index) => (
                 <div 
                   key={index}
                   className="group relative bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
                 >
-                  {/* Image ou placeholder */}
+                  {/* Image réelle ou placeholder */}
                   <div className="aspect-[4/3] relative overflow-hidden">
-                    {/* Placeholder temporaire en attendant les vraies images */}
-                    <div className="w-full h-full bg-gradient-to-br from-[color:var(--color-primary)]/20 to-[color:var(--color-secondary)]/20 flex items-center justify-center">
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      onError={(e) => {
+                        // Fallback en cas d'erreur de chargement d'image
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        const placeholder = target.nextElementSibling as HTMLElement;
+                        if (placeholder) placeholder.style.display = 'flex';
+                      }}
+                    />
+                    
+                    {/* Placeholder de fallback */}
+                    <div className="w-full h-full bg-gradient-to-br from-[color:var(--color-primary)]/20 to-[color:var(--color-secondary)]/20 flex items-center justify-center" style={{ display: 'none' }}>
                       <div className="text-center text-[color:var(--color-primary)]">
                         <FontAwesomeIcon icon={faCamera} className="w-12 h-12 mx-auto mb-2 opacity-50" />
                         <p className="text-sm font-semibold">{image.title}</p>
-                        <p className="text-xs opacity-70">Photo à venir</p>
+                        <p className="text-xs opacity-70">Image en cours de chargement</p>
                       </div>
                     </div>
                     

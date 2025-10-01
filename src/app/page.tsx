@@ -16,13 +16,14 @@ import { strapiService } from "@/lib/strapi";
  */
 export default async function HomePage() {
   // Récupération des données depuis Strapi
-  const [hero, expertises, testimonials, faqs, partners, contact] = await Promise.allSettled([
+  const [hero, expertises, testimonials, faqs, partners, contact, teamEnvironment] = await Promise.allSettled([
     strapiService.getHero(),
     strapiService.getExpertises(),
     strapiService.getTestimonials(),
     strapiService.getFAQs(),
     strapiService.getPartners(),
-    strapiService.getContact()
+    strapiService.getContact(),
+    strapiService.getTeamEnvironment()
   ]);
 
   return (
@@ -49,6 +50,7 @@ export default async function HomePage() {
       {/* Section Notre Expertise */}
       <ExpertiseSection 
         data={expertises.status === 'fulfilled' ? expertises.value : []}
+        teamEnvironmentData={teamEnvironment.status === 'fulfilled' ? teamEnvironment.value : []}
       />
 
       {/* Section Témoignages - Preuve émotionnelle */}

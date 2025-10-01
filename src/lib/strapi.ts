@@ -156,6 +156,23 @@ export interface ContactData {
   publishedAt: string;
 }
 
+export interface TeamEnvironmentData {
+  title: string;
+  description: string;
+  category: 'accueil' | 'equipe' | 'atelier' | 'consultation' | 'fabrication';
+  image: {
+    url: string;
+    alternativeText?: string;
+    width?: number;
+    height?: number;
+  };
+  order: number;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+}
+
 class StrapiService {
   private baseUrl: string;
 
@@ -226,6 +243,17 @@ class StrapiService {
   async getContact(): Promise<StrapiData<ContactData>> {
     const response = await this.fetchAPI<StrapiData<ContactData>>('/contact');
     return response.data;
+  }
+
+  // Team Environment (Gallery Images)
+  async getTeamEnvironment(): Promise<StrapiData<TeamEnvironmentData>[]> {
+    try {
+      const response = await this.fetchAPI<StrapiData<TeamEnvironmentData>[]>('/team-environments?populate=*&sort=order:asc&filters[isActive][$eq]=true');
+      return response.data;
+    } catch (error) {
+      console.warn('⚠️ Team Environment data not available, using fallback');
+      return [];
+    }
   }
 
   // Get image URL
