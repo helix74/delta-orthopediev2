@@ -346,14 +346,6 @@ export default function ExpertiseSection({ data, teamEnvironmentData }: Expertis
                         <p className="text-xs opacity-70">Image en cours de chargement</p>
                       </div>
                     </div>
-                    
-                    {/* Overlay au hover */}
-                    <div className="absolute inset-0 bg-[color:var(--color-primary)]/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <div className="text-center text-white p-4">
-                        <h5 className="font-bold text-lg mb-2">{image.title}</h5>
-                        <p className="text-sm">{image.description}</p>
-                      </div>
-                    </div>
                   </div>
 
                   {/* Titre sous l'image */}

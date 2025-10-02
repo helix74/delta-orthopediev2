@@ -1,13 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import emailjs from '@emailjs/browser';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
   faMapMarkerAlt, 
   faPhone, 
   faEnvelope, 
   faClock,
-  faPaperPlane
+  faPaperPlane,
+  faCheckCircle,
+  faExclamationTriangle
 } from "@fortawesome/free-solid-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { StrapiData, ContactData, strapiService } from "@/lib/strapi";
@@ -30,6 +33,7 @@ export default function ContactSection({ data }: ContactSectionProps) {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   // Utiliser les données Strapi ou les données par défaut
   const contactData = data?.attributes || {
@@ -80,13 +84,61 @@ export default function ContactSection({ data }: ContactSectionProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulation d'envoi (à remplacer par votre logique d'envoi)
-    setTimeout(() => {
-      alert("Message envoyé ! Nous vous recontacterons dans les plus brefs délais.");
+    setSubmitStatus('idle');
+
+    try {
+      // Configuration EmailJS
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+      // Vérifier que les clés sont configurées
+      if (!serviceId || !templateId || !publicKey) {
+        console.error('EmailJS not configured. Please add environment variables.');
+        throw new Error('Configuration EmailJS manquante');
+      }
+
+      // Paramètres du template EmailJS
+      const templateParams = {
+        from_name: formData.nom,
+        from_email: formData.email,
+        phone: formData.telephone || 'Non fourni',
+        message: formData.message,
+        to_email: 'contact@deltaorthopedie.tn',
+        current_date: new Date().toLocaleString('fr-FR', {
+          dateStyle: 'full',
+          timeStyle: 'short'
+        })
+      };
+
+      // Envoyer l'email via EmailJS
+      await emailjs.send(
+        serviceId,
+        templateId,
+        templateParams,
+        publicKey
+      );
+
+      // Succès
+      setSubmitStatus('success');
       setFormData({ nom: "", email: "", telephone: "", message: "" });
+
+      // Réinitialiser le statut après 5 secondes
+      setTimeout(() => {
+        setSubmitStatus('idle');
+      }, 5000);
+
+    } catch (error) {
+      console.error('Erreur lors de l\'envoi du message:', error);
+      setSubmitStatus('error');
+
+      // Réinitialiser le statut après 5 secondes
+      setTimeout(() => {
+        setSubmitStatus('idle');
+      }, 5000);
+    } finally {
       setIsSubmitting(false);
-    }, 2000);
+    }
   };
 
   return (
@@ -120,6 +172,32 @@ export default function ContactSection({ data }: ContactSectionProps) {
                 Remplissez ce formulaire et nous vous recontacterons dans les 24h.
               </p>
             </div>
+
+            {/* Message de succès */}
+            {submitStatus === 'success' && (
+              <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-start gap-3">
+                <FontAwesomeIcon icon={faCheckCircle} className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <div>
+                  <h4 className="font-semibold text-green-800 mb-1">Message envoyé avec succès !</h4>
+                  <p className="text-sm text-green-700">
+                    Merci pour votre message. Notre équipe vous recontactera dans les 24 heures.
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {/* Message d'erreur */}
+            {submitStatus === 'error' && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
+                <FontAwesomeIcon icon={faExclamationTriangle} className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                <div>
+                  <h4 className="font-semibold text-red-800 mb-1">Erreur d'envoi</h4>
+                  <p className="text-sm text-red-700">
+                    Une erreur s'est produite. Veuillez réessayer ou nous contacter directement par téléphone.
+                  </p>
+                </div>
+              </div>
+            )}
 
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Nom complet */}
