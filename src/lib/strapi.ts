@@ -244,8 +244,9 @@ class StrapiService {
   async getTeamEnvironment(): Promise<StrapiData<TeamEnvironmentData>[]> {
     try {
       console.log('🌐 Strapi URL utilisée:', this.baseUrl);
-      const response = await this.fetchAPI<StrapiData<TeamEnvironmentData>[]>('/team-environments?populate=*&sort=order:asc&filters[isActive][$eq]=true');
+      const response = await this.fetchAPI<StrapiData<TeamEnvironmentData>[]>('/team-environments?populate[image]=*&sort=order:asc&filters[isActive][$eq]=true');
       console.log('📊 Team Environment data received:', response.data?.length || 0, 'items');
+      console.log('🔍 First item structure:', JSON.stringify(response.data?.[0], null, 2));
       return response.data;
     } catch (error) {
       console.error('❌ Team Environment API Error:', error);
