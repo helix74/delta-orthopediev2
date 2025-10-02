@@ -264,21 +264,28 @@ class StrapiService {
     
     // Strapi v5 - structure possible : image.url directement
     if (image?.url) {
-      const fullUrl = `${this.baseUrl}${image.url}`;
+      // Si l'URL est déjà complète (commence par http/https), la retourner telle quelle
+      const fullUrl = image.url.startsWith('http') 
+        ? image.url 
+        : `${this.baseUrl}${image.url}`;
       console.log('✅ Image URL (direct):', fullUrl);
       return fullUrl;
     }
     
     // Strapi v5 - structure possible : image[0].url (array)
     if (Array.isArray(image) && image[0]?.url) {
-      const fullUrl = `${this.baseUrl}${image[0].url}`;
+      const fullUrl = image[0].url.startsWith('http')
+        ? image[0].url
+        : `${this.baseUrl}${image[0].url}`;
       console.log('✅ Image URL (array):', fullUrl);
       return fullUrl;
     }
     
     // Fallback pour l'ancienne structure v4
     if (image?.data?.attributes?.url) {
-      const fullUrl = `${this.baseUrl}${image.data.attributes.url}`;
+      const fullUrl = image.data.attributes.url.startsWith('http')
+        ? image.data.attributes.url
+        : `${this.baseUrl}${image.data.attributes.url}`;
       console.log('✅ Image URL (v4 structure):', fullUrl);
       return fullUrl;
     }
