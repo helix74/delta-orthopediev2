@@ -160,12 +160,7 @@ export interface TeamEnvironmentData {
   title: string;
   description: string;
   category: 'accueil' | 'equipe' | 'atelier' | 'consultation' | 'fabrication';
-  image: {
-    url: string;
-    alternativeText?: string;
-    width?: number;
-    height?: number;
-  };
+  image: any; // Structure flexible pour Strapi v5 - peut être un objet, array, etc.
   order: number;
   isActive: boolean;
   createdAt: string;
@@ -258,14 +253,30 @@ class StrapiService {
 
   // Get image URL
   getImageUrl(image: any): string | null {
-    // Gestion Strapi v5 - les données sont directement dans l'objet
+    console.log('🖼️ Image structure:', JSON.stringify(image, null, 2));
+    
+    // Strapi v5 - structure possible : image.url directement
     if (image?.url) {
-      return `${this.baseUrl}${image.url}`;
+      const fullUrl = `${this.baseUrl}${image.url}`;
+      console.log('✅ Image URL (direct):', fullUrl);
+      return fullUrl;
     }
-    // Fallback pour l'ancienne structure
+    
+    // Strapi v5 - structure possible : image[0].url (array)
+    if (Array.isArray(image) && image[0]?.url) {
+      const fullUrl = `${this.baseUrl}${image[0].url}`;
+      console.log('✅ Image URL (array):', fullUrl);
+      return fullUrl;
+    }
+    
+    // Fallback pour l'ancienne structure v4
     if (image?.data?.attributes?.url) {
-      return `${this.baseUrl}${image.data.attributes.url}`;
+      const fullUrl = `${this.baseUrl}${image.data.attributes.url}`;
+      console.log('✅ Image URL (v4 structure):', fullUrl);
+      return fullUrl;
     }
+    
+    console.warn('❌ No valid image URL found in:', image);
     return null;
   }
 }
