@@ -279,57 +279,65 @@ Une fois connectée, vous verrez le menu de gauche avec :
 
 ---
 
-## 📧 **Configuration EmailJS**
+## 📧 **Gestion des emails reçus**
 
-### **Étape 1 : Créer un compte EmailJS**
+### **Accès à EmailJS (déjà configuré)**
+
+Votre système d'emails est déjà configuré et fonctionnel. Voici comment gérer les emails reçus :
+
+### **Connexion à EmailJS**
 
 1. **Allez sur** : [https://www.emailjs.com/](https://www.emailjs.com/)
-2. **Cliquez sur** : `Sign Up`
-3. **Créez un compte** avec votre email professionnel
-4. **Vérifiez** votre email
+2. **Cliquez sur** : `Sign In`
+3. **Connectez-vous** avec vos identifiants
 
-### **Étape 2 : Configurer le service email**
+### **Gestion des emails**
 
-1. **Dans EmailJS**, allez dans `Email Services`
-2. **Cliquez sur** : `Add New Service`
-3. **Choisissez** : `Gmail`
-4. **Connectez** votre Gmail : `contact@deltaorthopedie.tn`
-5. **Copiez** le Service ID (ex: `service_abc123`)
+#### **Voir les emails reçus**
+- **Dans votre boîte email** : `contact@deltaorthopedie.tn`
+- **Tous les messages** du formulaire de contact arrivent directement dans cette boîte
+- **Format des emails** : 
+  - **Objet** : "Nouveau message de [Nom du client] - Site Delta Orthopédie"
+  - **Contenu** : Nom, email, téléphone, message du client
 
-### **Étape 3 : Créer un template d'email**
+#### **Répondre aux clients**
+1. **Ouvrez** l'email reçu
+2. **Cliquez sur** "Répondre"
+3. **L'email de réponse** ira directement au client
+4. **Écrivez** votre réponse professionnelle
 
-1. **Allez dans** : `Email Templates`
-2. **Cliquez sur** : `Create New Template`
-3. **Nom du template** : `contact_form_delta`
-4. **Subject** : `Nouveau message de {{from_name}} - Site Delta Orthopédie`
-5. **Content** : Utilisez le template fourni dans `EMAILJS_SETUP.md`
-6. **Dans Settings** :
-   - **To Email** : `contact@deltaorthopedie.tn`
-   - **From Name** : `Site Delta Orthopédie`
-   - **Reply To** : `{{from_email}}`
-7. **Cliquez sur** : `Save`
-8. **Copiez** le Template ID (ex: `template_xyz789`)
+#### **Organiser les emails**
+- **Créez des dossiers** dans votre boîte email :
+  - "Demandes urgentes"
+  - "Rendez-vous"
+  - "Devis"
+  - "Informations générales"
 
-### **Étape 4 : Obtenir votre clé publique**
+### **Vérification du bon fonctionnement**
 
-1. **Allez dans** : `Account` → `General`
-2. **Copiez** votre Public Key (ex: `AbCdEf123456`)
+#### **Tester le formulaire**
+1. **Allez sur** votre site : [https://delta-orthopediev2.vercel.app](https://delta-orthopediev2.vercel.app)
+2. **Scrollez** jusqu'à la section contact
+3. **Remplissez** le formulaire avec vos informations
+4. **Cliquez sur** "Envoyer le message"
+5. **Vérifiez** que vous recevez l'email
 
-### **Étape 5 : Configurer sur Vercel**
+#### **En cas de problème**
+- **Vérifiez** votre boîte email (spam aussi)
+- **Attendez** 2-3 minutes (délai de traitement)
+- **Contactez** votre développeur si nécessaire
 
-1. **Allez sur** : [https://vercel.com/dashboard](https://vercel.com/dashboard)
-2. **Sélectionnez** votre projet `delta-orthopediev2`
-3. **Allez dans** : `Settings` → `Environment Variables`
-4. **Ajoutez ces 3 variables** :
+### **Conseils pour la gestion**
 
-| Nom de la variable | Valeur | Environnements |
-|-------------------|--------|----------------|
-| `NEXT_PUBLIC_EMAILJS_SERVICE_ID` | `service_abc123` | Production, Preview, Development |
-| `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID` | `template_xyz789` | Production, Preview, Development |
-| `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY` | `AbCdEf123456` | Production, Preview, Development |
+#### **Réponse rapide**
+- **Répondez** dans les 24h maximum
+- **Utilisez** un ton professionnel et chaleureux
+- **Confirmez** la réception de la demande
 
-5. **Cliquez sur** : `Save`
-6. **Le site se redéploiera automatiquement**
+#### **Suivi des demandes**
+- **Notez** les informations importantes
+- **Planifiez** les rendez-vous
+- **Archivez** les emails traités
 
 ---
 
@@ -372,9 +380,9 @@ Une fois connectée, vous verrez le menu de gauche avec :
 3. Réessayez avec une image plus petite
 
 ### **Formulaire de contact ne fonctionne pas**
-1. Vérifiez que EmailJS est configuré
-2. Vérifiez les variables d'environnement dans Vercel
-3. Testez avec un autre email
+1. Vérifiez votre boîte email (dossier spam aussi)
+2. Attendez 2-3 minutes (délai de traitement)
+3. Contactez votre développeur si le problème persiste
 
 ---
 
@@ -383,7 +391,7 @@ Une fois connectée, vous verrez le menu de gauche avec :
 - **Site web** : [https://delta-orthopediev2.vercel.app](https://delta-orthopediev2.vercel.app)
 - **Administration Strapi** : [https://blessed-amusement-eec40fe5dd.strapiapp.com/admin](https://blessed-amusement-eec40fe5dd.strapiapp.com/admin)
 - **EmailJS** : [https://www.emailjs.com/](https://www.emailjs.com/)
-- **Vercel Dashboard** : [https://vercel.com/dashboard](https://vercel.com/dashboard)
+- **Boîte email** : `contact@deltaorthopedie.tn`
 
 ---
 
