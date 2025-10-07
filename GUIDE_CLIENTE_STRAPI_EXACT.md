@@ -27,9 +27,9 @@
 
 ### **Interface principale**
 Une fois connectée, vous verrez le menu de gauche avec :
-- 📊 **Dashboard** : Statistiques générales
-- 📝 **Content Manager** : Gestion des contenus
-- ⚙️ **Settings** : Paramètres
+- 📊 **Tableau de bord** : Statistiques générales
+- 📝 **Gestionnaire de contenu** : Gestion des contenus
+- ⚙️ **Paramètres** : Configuration
 
 ---
 
@@ -54,11 +54,11 @@ Une fois connectée, vous verrez le menu de gauche avec :
 | `isActive` | Case à cocher | ❌ Non | Activer/désactiver la section |
 
 ### **Comment modifier** :
-1. **Allez dans** : `Content Manager` → `Single Types` → `Hero Section`
+1. **Allez dans** : `Gestionnaire de contenu` → `Types uniques` → `Hero Section`
 2. **Cliquez sur** l'entrée existante
 3. **Modifiez** les champs souhaités
-4. **Cliquez sur** `Save` (en haut à droite)
-5. **Cliquez sur** `Publish` pour publier les changements
+4. **Cliquez sur** `Enregistrer` (en haut à droite)
+5. **Cliquez sur** `Publier` pour publier les changements
 
 ---
 
@@ -81,22 +81,22 @@ Une fois connectée, vous verrez le menu de gauche avec :
 | `slug` | UID | ❌ Non | URL automatique basée sur le titre |
 
 ### **Ajouter un nouveau service** :
-1. **Allez dans** : `Content Manager` → `Collection Types` → `Expertise`
-2. **Cliquez sur** `Create new entry`
+1. **Allez dans** : `Gestionnaire de contenu` → `Types de collection` → `Expertise`
+2. **Cliquez sur** `Créer une nouvelle entrée`
 3. **Remplissez** :
    - **Title** : "Orthèses sur mesure"
    - **Description** : Description du service avec formatage
    - **Icon** : "fa-bone" (optionnel)
    - **Order** : 1 (pour l'ordre d'affichage)
    - **Is Active** : ✅ Activé
-4. **Cliquez sur** `Save`
-5. **Cliquez sur** `Publish`
+4. **Cliquez sur** `Enregistrer`
+5. **Cliquez sur** `Publier`
 
 ### **Modifier un service existant** :
 1. **Cliquez sur** le service à modifier
 2. **Modifiez** les champs souhaités
-3. **Cliquez sur** `Save`
-4. **Cliquez sur** `Publish`
+3. **Cliquez sur** `Enregistrer`
+4. **Cliquez sur** `Publier`
 
 ---
 
@@ -124,8 +124,8 @@ Une fois connectée, vous verrez le menu de gauche avec :
 - `fabrication` : Photos du processus de fabrication
 
 ### **Ajouter une nouvelle image** :
-1. **Allez dans** : `Content Manager` → `Collection Types` → `Team Environment`
-2. **Cliquez sur** `Create new entry`
+1. **Allez dans** : `Gestionnaire de contenu` → `Types de collection` → `Team Environment`
+2. **Cliquez sur** `Créer une nouvelle entrée`
 3. **Remplissez** :
    - **Title** : "Salle de consultation moderne"
    - **Description** : "Notre salle de consultation équipée des dernières technologies"
@@ -133,14 +133,14 @@ Une fois connectée, vous verrez le menu de gauche avec :
    - **Image** : Uploadez votre photo (JPG/PNG, max 2MB)
    - **Order** : 1 (pour l'ordre d'affichage)
    - **Is Active** : ✅ Activé
-4. **Cliquez sur** `Save`
-5. **Cliquez sur** `Publish`
+4. **Cliquez sur** `Enregistrer`
+5. **Cliquez sur** `Publier`
 
 ### **Modifier une image existante** :
 1. **Cliquez sur** l'image à modifier
 2. **Modifiez** les champs souhaités
-3. **Cliquez sur** `Save`
-4. **Cliquez sur** `Publish`
+3. **Cliquez sur** `Enregistrer`
+4. **Cliquez sur** `Publier`
 
 ---
 
@@ -165,8 +165,8 @@ Une fois connectée, vous verrez le menu de gauche avec :
 | `isActive` | Case à cocher | ❌ Non | Activer/désactiver |
 
 ### **Ajouter un nouveau témoignage** :
-1. **Allez dans** : `Content Manager` → `Collection Types` → `Témoignage`
-2. **Cliquez sur** `Create new entry`
+1. **Allez dans** : `Gestionnaire de contenu` → `Types de collection` → `Témoignage`
+2. **Cliquez sur** `Créer une nouvelle entrée`
 3. **Remplissez** :
    - **Client Name** : "Ahmed Ben Ali"
    - **Testimonial** : "Excellent service, très professionnel..."
@@ -174,8 +174,8 @@ Une fois connectée, vous verrez le menu de gauche avec :
    - **Service** : "Prothèse de genou"
    - **Is Verified** : ✅ Activé
    - **Is Active** : ✅ Activé
-4. **Cliquez sur** `Save`
-5. **Cliquez sur** `Publish`
+4. **Cliquez sur** `Enregistrer`
+5. **Cliquez sur** `Publier`
 
 ---
 
@@ -203,16 +203,16 @@ Une fois connectée, vous verrez le menu de gauche avec :
 - `laboratoire` : Laboratoires d'analyse
 
 ### **Ajouter un nouveau partenaire** :
-1. **Allez dans** : `Content Manager` → `Collection Types` → `Partenaire`
-2. **Cliquez sur** `Create new entry`
+1. **Allez dans** : `Gestionnaire de contenu` → `Types de collection` → `Partenaire`
+2. **Cliquez sur** `Créer une nouvelle entrée`
 3. **Remplissez** :
    - **Name** : "Clinique La Marsa"
    - **Logo** : Uploadez le logo (PNG avec fond transparent recommandé)
    - **Website** : "https://clinique-lamarsa.tn"
    - **Category** : "clinique"
    - **Is Active** : ✅ Activé
-4. **Cliquez sur** `Save`
-5. **Cliquez sur** `Publish`
+4. **Cliquez sur** `Enregistrer`
+5. **Cliquez sur** `Publier`
 
 ---
 
@@ -240,16 +240,16 @@ Une fois connectée, vous verrez le menu de gauche avec :
 - `assurance` : Questions sur l'assurance
 
 ### **Ajouter une nouvelle FAQ** :
-1. **Allez dans** : `Content Manager` → `Collection Types` → `FAQ`
-2. **Cliquez sur** `Create new entry`
+1. **Allez dans** : `Gestionnaire de contenu` → `Types de collection` → `FAQ`
+2. **Cliquez sur** `Créer une nouvelle entrée`
 3. **Remplissez** :
    - **Question** : "Quels sont vos horaires d'ouverture ?"
    - **Answer** : "Nous sommes ouverts du lundi au vendredi de 8h à 18h..."
    - **Category** : "general"
    - **Is Popular** : ✅ Activé (si question fréquente)
    - **Is Active** : ✅ Activé
-4. **Cliquez sur** `Save`
-5. **Cliquez sur** `Publish`
+4. **Cliquez sur** `Enregistrer`
+5. **Cliquez sur** `Publier`
 
 ---
 
@@ -271,11 +271,11 @@ Une fois connectée, vous verrez le menu de gauche avec :
 | `mapEmbed` | Texte | ❌ Non | Code d'intégration de carte |
 
 ### **Comment modifier** :
-1. **Allez dans** : `Content Manager` → `Single Types` → `Contact`
+1. **Allez dans** : `Gestionnaire de contenu` → `Types uniques` → `Contact`
 2. **Cliquez sur** l'entrée existante
 3. **Modifiez** les informations de contact
-4. **Cliquez sur** `Save`
-5. **Cliquez sur** `Publish`
+4. **Cliquez sur** `Enregistrer`
+5. **Cliquez sur** `Publier`
 
 ---
 
@@ -353,16 +353,16 @@ Une fois connectée, vous verrez le menu de gauche avec :
 - **Listes** : Pour organiser l'information
 
 ### **Publication**
-- **Save** : Sauvegarde les modifications
-- **Publish** : Rend les modifications visibles sur le site
-- **Unpublish** : Retire du site (mais garde en brouillon)
+- **Enregistrer** : Sauvegarde les modifications
+- **Publier** : Rend les modifications visibles sur le site
+- **Dépublier** : Retire du site (mais garde en brouillon)
 
 ---
 
 ## 🆘 **Dépannage**
 
 ### **Les modifications ne s'affichent pas**
-1. Vérifiez que vous avez cliqué sur `Publish`
+1. Vérifiez que vous avez cliqué sur `Publier`
 2. Attendez 1-2 minutes (cache)
 3. Actualisez la page du site (F5)
 
